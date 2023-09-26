@@ -1,4 +1,4 @@
-module nfon-api-client
+module github.com/art-pub/nfon-api-client
 
 go 1.18
 
