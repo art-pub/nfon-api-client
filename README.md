@@ -138,6 +138,9 @@ Links: Array of links including the first, the next and the last URL to retrieve
 > [!IMPORTANT]
 > **Please note:** You have to iterate through all those links to retrieve all data. Just repeat with the `next` given `Href` until your current `Href` (path of the current request) matches the `last` entry.
 
+> [!IMPORTANT]
+> If the `last` entry is empty, you already have all data in the current response.
+
 
 ## Links
 
