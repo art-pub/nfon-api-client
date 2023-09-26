@@ -10,6 +10,10 @@ type NameValuePair struct {
 	Name  string `json:"name"`
 	Value any    `json:"value"`
 }
+type RelHrefPair struct {
+	Name  string `json:"rel"`
+	Value string `json:"href"`
+}
 
 type Items struct {
 	Href    string
@@ -26,11 +30,12 @@ type SingleResult struct {
 }
 
 type MultiResult struct {
-	Href   string
-	Offset int
-	Total  int
-	Links  []NameValuePair
-	Items  []Items
+	Href     string
+	Offset   int
+	Total    int
+	Links    []RelHrefPair
+	LinksMap map[string]string
+	Items    []Items
 }
 
 func SingleresultParser(body []byte) SingleResult {
@@ -62,6 +67,11 @@ func MultiResultParser(body []byte) MultiResult {
 
 	var parsed MultiResult
 	json.Unmarshal(body, &parsed)
+
+	parsed.LinksMap = make(map[string]string)
+	for _, link := range parsed.Links {
+		parsed.LinksMap[link.Name] = link.Value
+	}
 
 	for ii, i := range parsed.Items {
 		i.DataMap = make(map[string]string)
