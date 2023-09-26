@@ -108,6 +108,10 @@ If you query an endpoint with many results, the multiparser helps to continue wo
 	if d.Total > 0 {
 		fmt.Printf("First result is: %s: %s", d.Items[1].DataMap["displayName"], d.Items[1].DataMap["displayNumber"])
 	}
+
+    // first dataset is linked as d.LinksMap["first"]
+    // last  dataset is linked as d.LinksMap["last"]
+    // next  dataset is linked as d.LinksMap["next"]
     ...
 ```
 
@@ -129,7 +133,7 @@ Offset: Offset starting with 0
 
 Size: Amount of maximum results in the response. You can set the amount in the request with the parameter `pageSize=XXX` with `XXX` being max. 100.
 
-Links: Array of links including the first, the next and the last URL to retrieve all data.
+Links: Array of links including the first, the next and the last URL to retrieve all data. See `LinksMap["first"]`, `LinksMap["last"]` and `LinksMap["next"]` in the example above.
 
 > [!IMPORTANT]
 > **Please note:** You have to iterate through all those links to retrieve all data. Just repeat with the `next` given `Href` until your current `Href` (path of the current request) matches the `last` entry.
