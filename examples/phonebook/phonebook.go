@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	nfonapiclient "nfon-api-client"
 	"os"
 	"strings"
+
+	nfonapiclient "github.com/art-pub/nfon-api-client"
 )
 
 func main() {

@@ -3,9 +3,10 @@ package main
 import (
 	"io"
 	"net/http"
-	nfonapiclient "nfon-api-client"
 	"os"
 	"strings"
+
+	nfonapiclient "github.com/art-pub/nfon-api-client"
 )
 
 // run this with go run version.go https://API_ROOT_URL API_KEY API_SECRET
