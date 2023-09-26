@@ -23,12 +23,12 @@ func TestGetAuthentication(t *testing.T) {
 	exppectedDateRegExp := "^[a-zA-Z]{3}, [0-9]{2} [a-zA-Z]{3} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT$"
 	expectedContentType := "application/json"
 	expectedContentMD5 := "d41d8cd98f00b204e9800998ecf8427e"
-	expectedSignature := "UpujUjJOS5jywvmHSyw9dTl0SmM="
+	expectedSignature := "2kbei1CrOlKo4pkwcMJ1aOPkYzw="
 
 	assert.Regexp(t, exppectedDateRegExp, date, "date expected '"+exppectedDateRegExp+"', but got '"+date+"'")
-	assert.Equal(t, contentType, expectedContentType, "contentType expected "+expectedContentType+", but got '"+contentType+"'")
-	assert.Equal(t, contentMD5, expectedContentMD5, "contentMD5 expected "+expectedContentMD5+", but got '"+contentMD5+"'")
-	assert.Equal(t, signature, expectedSignature, "signature expected "+expectedSignature+", but got '"+signature+"'")
+	assert.Equal(t, expectedContentType, contentType, "contentType expected "+expectedContentType+", but got '"+contentType+"'")
+	assert.Equal(t, expectedContentMD5, contentMD5, "contentMD5 expected "+expectedContentMD5+", but got '"+contentMD5+"'")
+	assert.Equal(t, expectedSignature, signature, "signature expected "+expectedSignature+", but got '"+signature+"'")
 }
 
 func TestGetServiceportalClient(t *testing.T) {
@@ -52,10 +52,10 @@ func TestGetServiceportalClient(t *testing.T) {
 	// then
 	expectedAuthorization := "NFON-API 6bc2fe16-c241-49fa-af41-01a8642dd885:fe8ubWPbe42fDvEsiqA/XImzVIk="
 	assert.Equal(t, req.Method, method, "method expected '"+method+"', got '"+req.Method+"'")
-	assert.Equal(t, req.Header.Get("Authorization"), expectedAuthorization, "Authorization expected '"+expectedAuthorization+"', got '"+req.Header.Get("Authorization")+"'")
-	assert.Equal(t, req.Header.Get("x-nfon-date"), date, "x-nfon-date expected '"+date+"', got '"+req.Header.Get("x-nfon-date")+"'")
-	assert.Equal(t, req.Header.Get("Date"), date, "date expected '"+date+"', got '"+req.Header.Get("Date")+"'")
-	assert.Equal(t, req.Header.Get("Content-MD5"), contentMD5, "Content-MD5 expected '"+contentMD5+"', got '"+req.Header.Get("Content-MD5")+"'")
-	assert.Equal(t, req.Header.Get("Content-Type"), contentType, "Content-Type expected '"+contentType+"', got '"+req.Header.Get("Content-Type")+"'")
-	assert.Equal(t, req.URL.String(), apiRequestPath, "apiRequestPath expected '"+apiRequestPath+"', got '"+req.URL.String()+"'")
+	assert.Equal(t, expectedAuthorization, req.Header.Get("Authorization"), "Authorization expected '"+expectedAuthorization+"', got '"+req.Header.Get("Authorization")+"'")
+	assert.Equal(t, date, req.Header.Get("x-nfon-date"), "x-nfon-date expected '"+date+"', got '"+req.Header.Get("x-nfon-date")+"'")
+	assert.Equal(t, date, req.Header.Get("Date"), "date expected '"+date+"', got '"+req.Header.Get("Date")+"'")
+	assert.Equal(t, contentMD5, req.Header.Get("Content-MD5"), "Content-MD5 expected '"+contentMD5+"', got '"+req.Header.Get("Content-MD5")+"'")
+	assert.Equal(t, contentType, req.Header.Get("Content-Type"), "Content-Type expected '"+contentType+"', got '"+req.Header.Get("Content-Type")+"'")
+	assert.Equal(t, apiRequestPath, req.URL.String(), "apiRequestPath expected '"+apiRequestPath+"', got '"+req.URL.String()+"'")
 }
