@@ -144,4 +144,5 @@ Links: Array of links including the first, the next and the last URL to retrieve
 
 ## Links
 
-* [Latest NFON API Documentation (zip)](https://cdn.nfon.com/API_Documentation.zip)
+* [Latest NFON API Documentation (zip)](https://cdn.cloudya.com/API_Documentation.zip)
+* [PHP client for NFON API](https://github.com/art-pub/nfon-api-client-php)
