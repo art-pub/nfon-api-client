@@ -133,6 +133,8 @@ Offset: Offset starting with 0
 
 Size: Amount of maximum results in the response. You can set the amount in the request with the parameter `pageSize=XXX` with `XXX` being max. 100.
 
+Query: You filter the results with the additional parameter `_q`, i.e. `/api/customers/K1234/phone-books?_q=SomeName`.
+
 Links: Array of links including the first, the next and the last URL to retrieve all data. See `LinksMap["first"]`, `LinksMap["last"]` and `LinksMap["next"]` in the example above.
 
 > [!IMPORTANT]
