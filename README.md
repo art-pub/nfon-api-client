@@ -29,9 +29,11 @@ bash$ go get github.com/art-pub/nfon-api-client
 
 ```go
     ...
-    apiRootURL := "https://api09.nfon.com"
-    apiKey := "NFON-ABCDEF-123456"
-    apiSecret := "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+	apiConfig := nfonapiclient.ApiConfig{
+		BaseURL: "https://api09.nfon.com"
+		Public: "NFON-ABCDEF-123456"
+    	Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+	}
     
 	var req = http.Request{
 		Method:     http.MethodGet,
@@ -39,7 +41,7 @@ bash$ go get github.com/art-pub/nfon-api-client
 		RequestURI: "/api/version", // the account name is neccessary for some endpoints and part of the URL path
 	}
 
-	_, s, failed := nfonapiclient.Request(&req, nfonapiclient.ApiConfig{BaseURL: apiRootURL, Public: apiKey, Secret: apiSecret}, false)
+	_, s, failed := nfonapiclient.Request(&req, apiConfig, false)
 
 	if !failed {
 		println("Status is " + string(s))
@@ -62,7 +64,7 @@ The result is JSON-like, but difficult to read or process. So as a little help t
 For querying the version, the code can be extended from above:
 ```go
     ...
-	_, s, failed := nfonapiclient.Request(&req, nfonapiclient.ApiConfig{BaseURL: apiRootURL, Public: apiKey, Secret: apiSecret}, false)
+	_, s, failed := nfonapiclient.Request(&req, apiConfig, false)
 
 	if !failed {
 		parsed := nfonapiclient.SingleresultParser(s)
@@ -84,9 +86,12 @@ If you query an endpoint with many results, the multiparser helps to continue wo
 ```go
     ...
     
-    apiRootURL := "https://api09.nfon.com"
-    apiKey := "NFON-ABCDEF-123456"
-    apiSecret := "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+
+	apiConfig := nfonapiclient.ApiConfig{
+		BaseURL: "https://api09.nfon.com"
+		Public: "NFON-ABCDEF-123456"
+    	Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+	}
     account := "K4711"
 
     var req = http.Request{
@@ -95,7 +100,7 @@ If you query an endpoint with many results, the multiparser helps to continue wo
 		RequestURI: "/api/customers/" + account + "/phone-books?_pagesize=3",
 	}
 
-	_, s, failed := nfonapiclient.Request(&req, nfonapiclient.ApiConfig{BaseURL: apiRootURL, Public: apiKey, Secret: apiSecret}, false)
+	_, s, failed := nfonapiclient.Request(&req, apiConfig, false)
 
 	if !failed {
 		println("API returns " + string(s))
