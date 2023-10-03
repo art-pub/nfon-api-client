@@ -32,7 +32,7 @@ bash$ go get github.com/art-pub/nfon-api-client
 	apiConfig := nfonapiclient.ApiConfig{
 		BaseURL: "https://api09.nfon.com"
 		Public: "NFON-ABCDEF-123456"
-    	Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+    		Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
 	}
     
 	var req = http.Request{
