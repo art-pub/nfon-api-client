@@ -90,7 +90,7 @@ If you query an endpoint with many results, the multiparser helps to continue wo
 	apiConfig := nfonapiclient.ApiConfig{
 		BaseURL: "https://api09.nfon.com"
 		Public: "NFON-ABCDEF-123456"
-    	Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+    		Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
 	}
     account := "K4711"
 
