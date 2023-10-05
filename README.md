@@ -28,13 +28,13 @@ bash$ go get github.com/art-pub/nfon-api-client
 ```
 
 ```go
-    ...
+	...
 	apiConfig := nfonapiclient.ApiConfig{
 		BaseURL: "https://api09.nfon.com"
 		Public: "NFON-ABCDEF-123456"
-    		Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+		Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
 	}
-    
+
 	var req = http.Request{
 		Method:     http.MethodGet,
 		Body:       io.NopCloser(strings.NewReader("")),
@@ -48,7 +48,7 @@ bash$ go get github.com/art-pub/nfon-api-client
 	} else {
 		println("Something failed. Please check your API parameters")
 	}
-    ...
+	...
 ```
 
 Executed this:
@@ -63,16 +63,16 @@ The result is JSON-like, but difficult to read or process. So as a little help t
 #### Simple Result Parser
 For querying the version, the code can be extended from above:
 ```go
-    ...
+	...
 	_, s, failed := nfonapiclient.Request(&req, apiConfig, false)
 
 	if !failed {
 		parsed := nfonapiclient.SingleresultParser(s)
-	    println("version is '" + parsed.DataMap["version"] + " - " + parsed.DataMap["buildTime"] + " - " + parsed.DataMap["host"] + "'")
+		println("version is '" + parsed.DataMap["version"] + " - " + parsed.DataMap["buildTime"] + " - " + parsed.DataMap["host"] + "'")
 	} else {
 		println("Something failed. Please check your API parameters")
 	}
-    ...
+	...
 ```
 If one executes this, then one receives the following output:
 
@@ -84,17 +84,15 @@ The data result is parsed into a simple `map[string]string` and can be used for 
 
 If you query an endpoint with many results, the multiparser helps to continue working with the result. The usage is as simple as with the single parser:
 ```go
-    ...
-    
-
+	...
 	apiConfig := nfonapiclient.ApiConfig{
 		BaseURL: "https://api09.nfon.com"
 		Public: "NFON-ABCDEF-123456"
-    		Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
+		Secret = "gAp3bTxxUev5JkxOcBdeC5Absm7J84jp6mEhJZd3XiLdjzoGSF"
 	}
-    account := "K4711"
+	account := "K4711"
 
-    var req = http.Request{
+	var req = http.Request{
 		Method:     http.MethodGet,
 		Body:       io.NopCloser(strings.NewReader("")),
 		RequestURI: "/api/customers/" + account + "/phone-books?_pagesize=3",
@@ -114,10 +112,10 @@ If you query an endpoint with many results, the multiparser helps to continue wo
 		fmt.Printf("First result is: %s: %s", d.Items[1].DataMap["displayName"], d.Items[1].DataMap["displayNumber"])
 	}
 
-    // first dataset is linked as d.LinksMap["first"]
-    // last  dataset is linked as d.LinksMap["last"]
-    // next  dataset is linked as d.LinksMap["next"]
-    ...
+	// first dataset is linked as d.LinksMap["first"]
+	// last  dataset is linked as d.LinksMap["last"]
+	// next  dataset is linked as d.LinksMap["next"]
+	...
 ```
 
 Output:
